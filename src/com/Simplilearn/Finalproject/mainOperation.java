@@ -20,6 +20,8 @@ public class mainOperation {
 		String list = null;
 
 		Scanner sc1 = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
+		while(option !=0) {
 		switch (option) {
 		case 1:
 			System.out.println("File names");
@@ -27,41 +29,71 @@ public class mainOperation {
 			break;
 
 		case 2:
-			int newoption = menuin(sc1);
-
+			//int newoption = menuin(sc1);
+			int newoption = 0;
+			cmd();
+			newoption = menuin( newoption);
+			
+			while(newoption!=0) {
 			switch (newoption) {
 
 			case 1:
+				
 				createfile();
+				
+				System.out.println("Press 1 to continue\n");
+				int n = sc1.nextInt();
+				if (n != 0) {
+				
+					cmd();
+					newoption = sc1.nextInt();
+					menuin(newoption);
+					
+				}
 				break;
+				
 			case 2:
-				Scanner sc = new Scanner(System.in);
+				
 				System.out.println("Enter File Name To Delete \n");
 				String value = sc.next();
-
+				
 				Delete(value);
-				int op = sc.nextInt();
-				if (op == 1) {
+				
+				System.out.println("Press 1 to continue \n");
+				int p= sc1.nextInt();
+				if (p != 0) {
 					System.out.println("return\n");
-
+					cmd();
+					newoption= sc1.nextInt();
+					menuin(newoption);
 				}
 				break;
 			case 3:
+				
 				System.out.println("Enter File name to Search");
 				Scanner sc11 = new Scanner(System.in);
 				searcFile(sc11);
+				System.out.println("Press 1 to continue \n");
+				int k= sc1.nextInt();
+				if (k != 0) {
+					cmd();
+					newoption =sc.nextInt();
+					menuin(newoption);
+					
+				}
 
 				break;
 			case 4:
-				menumain();
+				
 				System.out.println("  Press 4 toGo back to main menu");
+				menumain();
 				break;
 
 			default:
 				System.out.println("This is not a valid Menu Option! Please Select Another");
 				break;
 
-			}
+			}}
 			// sc1.close();
 
 			break;
@@ -78,24 +110,40 @@ public class mainOperation {
 		return list;
 
 	}
+		return list;}
 
-	public static int menuin(Scanner sc1) {
-		System.out.println("Select File Operation");
-		int newoption = 0;
-		System.out.println("Press 1 To Add a file to the existing directory list");
-		System.out.println("Press 2 To Delete a user specified file from the existing directory list");
-		System.out.println("Press 3 To Option to navigate back to the main context");
-		System.out.println("Press 4 To Go back to main menu");
 
+
+	public static int menuin(int newoption) {
+		
+		Scanner sc1 = new Scanner(System.in);
+		//cmd();
+if(newoption ==0) {
 		try {
 			newoption = sc1.nextInt();
 		} catch (InputMismatchException e) {
 			System.out.println("Invalid input");
 		} finally {
-			// sc1.close();
+			 //sc1.close();
 		}
 		return newoption;
+	}else {
+		return newoption;
 	}
+}
+
+
+
+	public static void cmd() {
+		System.out.println("\n***************Sub Menu****************\n");
+		System.out.println("Select File Operation");
+		System.out.println("Press 1 To Add a file to the existing directory list");
+		System.out.println("Press 2 To Delete a user specified file from the existing directory list");
+		System.out.println("Press 3 To Search File");
+		System.out.println("Press 4 To Go back to main menu");
+	}
+
+
 
 	public static void searcFile(Scanner sc) {
 		String rootDir = "H:\\file operations";
@@ -133,19 +181,7 @@ public class mainOperation {
 		int searchIndex = binarySearch(array, search);
 
 		System.out.println(searchIndex != -1 ? array[searchIndex] + " - Index is " + searchIndex : "Not found");
-		try {
-			System.out.println("Press 1 togo back to  menu");
-			int opt = sc.nextInt();
-			// mainOperation op = new mainOperation();
-			// op.operations(option);
-			if (opt != 0) {
-				menuin(sc);
-			}
-		} catch (Exception e) {
-			System.out.println("Invalid Input");
-		} finally {
-			sc.close();
-		}
+		
 	}
 
 	public static void bsort(String str[]) {
@@ -206,20 +242,7 @@ public class mainOperation {
 		}
 
 		System.out.println("The file is created");
-		System.out.println("Press 1 to go back to main menu ");
-		try {
-			int meb = sc.nextInt();
-			if (meb != 0) {
-				// menumain();
-				menuin(sc);
-			} else {
-				System.out.println("Invalid Input ");
-			}
-		} catch (Exception e1) {
-			System.out.println("Invalid Input ");
-		} finally {
-			sc.close();
-		}
+		
 	}
 
 	private static void Delete(String name) {
@@ -231,6 +254,8 @@ public class mainOperation {
 			boolean f = Files.deleteIfExists(path);
 			if (f) {
 				System.out.println("Deleted");
+			}else {
+				System.out.println("Erroe while Deleteting");
 			}
 		} catch (NoSuchFileException ee) {
 			System.out.println("No Such File Exists");
@@ -245,17 +270,7 @@ public class mainOperation {
 			// TODO Auto-generated catch block
 			System.out.println("No Such File Exists");
 		}
-		try {
-			System.out.println("Press1 to coninue");
-			int res1 = sc4.nextInt();
-			if (res1 != 0) {
-				menuin(sc4);
-			}
-		} catch (Exception e) {
-			System.out.println("invalid Selection");
-		} finally {
-			sc4.close();
-		}
+		
 
 	}
  
@@ -311,7 +326,7 @@ public class mainOperation {
 		} catch (Exception e1) {
 			System.out.println("Invalid Input ");
 		} finally {
-			sc.close();
+			//sc.close();
 		}
 
 	}
@@ -324,6 +339,7 @@ public class mainOperation {
 	}
 
 	public static void menumain() {
+		System.out.println("\n***************Main Menu****************\n");
 		System.out.println(" Press 1 to Display Existing files ");
 		System.out.println(" Press 2 to File operations");
 		System.out.println(" Press 0 to Close The application");
@@ -337,7 +353,7 @@ public class mainOperation {
 		} catch (Exception e) {
 			System.out.println("Invalid Input");
 		} finally {
-			sc.close();
+			//sc.close();
 		}
 	}
 
