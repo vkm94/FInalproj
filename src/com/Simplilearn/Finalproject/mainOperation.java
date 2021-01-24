@@ -141,7 +141,7 @@ public class mainOperation {
 			int opt = sc.nextInt();
 			//mainOperation op = new mainOperation();
 			//op.operations(option);
-			if(opt ==1) {
+			if(opt !=0) {
 				menuin(sc);
 			}
 			}catch(Exception e) {
@@ -213,7 +213,7 @@ public class mainOperation {
 		System.out.println("Press 1 to go back to main menu ");
 		try{
 			int meb = sc.nextInt();
-			if(meb == 1) {
+			if(meb !=0 ) {
 			//menumain();
 				menuin(sc);
 			}else {
@@ -226,14 +226,15 @@ public class mainOperation {
 	}}
 
 	private static void Delete(String name) {
+		Scanner sc4 = new Scanner(System.in);
 		String filepath = "H:\\file operations";
 		Path path = Paths.get(filepath, name);
 		try {
-			System.out.println(path);
+			//System.out.println(path);
 			boolean f=Files.deleteIfExists(path);
-if(f) {
-	System.out.println("Deleted");
-}
+			if(f) {
+				System.out.println("Deleted");
+			}
 		}
 		catch (NoSuchFileException ee) {
 			System.out.println("No Such File Exists");
@@ -248,7 +249,17 @@ if(f) {
 			// TODO Auto-generated catch block
 			System.out.println("No Such File Exists");
 		}
-		
+		try {
+		System.out.println("Press1 to coninue");
+		int res1=sc4.nextInt();
+		if(res1 !=0) {
+			menuin(sc4);
+		}
+		}catch(Exception e) {
+			System.out.println("invalid Selection");
+		}finally {
+			sc4.close();
+		}
 		
 	}
 
@@ -296,7 +307,7 @@ if(f) {
 			System.out.println("press 1 to main menu ");
 			int meb = sc.nextInt();
 			if(meb == 1) {
-				menuin(sc);
+				menumain();
 			}else {
 				System.out.println("Invalid Input ");
 			}
