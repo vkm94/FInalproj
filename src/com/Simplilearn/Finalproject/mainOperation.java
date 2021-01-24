@@ -9,10 +9,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.TreeSet;
+
 
 public class mainOperation {
 	public String operations(int option) {
@@ -27,29 +28,29 @@ public class mainOperation {
 
 		case 2:
 			int newoption = menuin(sc1);
-			
+
 			switch (newoption) {
-			
-			case 1: 
+
+			case 1:
 				createfile();
 				break;
 			case 2:
 				Scanner sc = new Scanner(System.in);
 				System.out.println("Enter File Name To Delete \n");
 				String value = sc.next();
-				
+
 				Delete(value);
 				int op = sc.nextInt();
-					if(op==1) {
-						System.out.println("return\n");
-						
-					}
+				if (op == 1) {
+					System.out.println("return\n");
+
+				}
 				break;
 			case 3:
 				System.out.println("Enter File name to Search");
 				Scanner sc11 = new Scanner(System.in);
 				searcFile(sc11);
-				
+
 				break;
 			case 4:
 				menumain();
@@ -78,8 +79,6 @@ public class mainOperation {
 
 	}
 
-
-
 	public static int menuin(Scanner sc1) {
 		System.out.println("Select File Operation");
 		int newoption = 0;
@@ -97,8 +96,6 @@ public class mainOperation {
 		}
 		return newoption;
 	}
-
-	
 
 	public static void searcFile(Scanner sc) {
 		String rootDir = "H:\\file operations";
@@ -139,15 +136,14 @@ public class mainOperation {
 		try {
 			System.out.println("Press 1 togo back to  menu");
 			int opt = sc.nextInt();
-			//mainOperation op = new mainOperation();
-			//op.operations(option);
-			if(opt !=0) {
+			// mainOperation op = new mainOperation();
+			// op.operations(option);
+			if (opt != 0) {
 				menuin(sc);
 			}
-			}catch(Exception e) {
-				System.out.println("Invalid Input");
-			}
-			finally {
+		} catch (Exception e) {
+			System.out.println("Invalid Input");
+		} finally {
 			sc.close();
 		}
 	}
@@ -211,32 +207,32 @@ public class mainOperation {
 
 		System.out.println("The file is created");
 		System.out.println("Press 1 to go back to main menu ");
-		try{
+		try {
 			int meb = sc.nextInt();
-			if(meb !=0 ) {
-			//menumain();
+			if (meb != 0) {
+				// menumain();
 				menuin(sc);
-			}else {
+			} else {
 				System.out.println("Invalid Input ");
 			}
-		}catch(Exception e1){
+		} catch (Exception e1) {
 			System.out.println("Invalid Input ");
-		}finally {
-			sc.close();	
-	}}
+		} finally {
+			sc.close();
+		}
+	}
 
 	private static void Delete(String name) {
 		Scanner sc4 = new Scanner(System.in);
 		String filepath = "H:\\file operations";
 		Path path = Paths.get(filepath, name);
 		try {
-			//System.out.println(path);
-			boolean f=Files.deleteIfExists(path);
-			if(f) {
+			// System.out.println(path);
+			boolean f = Files.deleteIfExists(path);
+			if (f) {
 				System.out.println("Deleted");
 			}
-		}
-		catch (NoSuchFileException ee) {
+		} catch (NoSuchFileException ee) {
 			System.out.println("No Such File Exists");
 		} catch (NoSuchElementException ne) {
 			System.out.println("No Such File Exists");
@@ -250,32 +246,31 @@ public class mainOperation {
 			System.out.println("No Such File Exists");
 		}
 		try {
-		System.out.println("Press1 to coninue");
-		int res1=sc4.nextInt();
-		if(res1 !=0) {
-			menuin(sc4);
-		}
-		}catch(Exception e) {
+			System.out.println("Press1 to coninue");
+			int res1 = sc4.nextInt();
+			if (res1 != 0) {
+				menuin(sc4);
+			}
+		} catch (Exception e) {
 			System.out.println("invalid Selection");
-		}finally {
+		} finally {
 			sc4.close();
 		}
-		
+
 	}
-
-
+ 
 	public static void extracted() {
-		
+
 		System.out.println("\n**************************************\n");
 		System.out.println("Welcome To Lockers Pvt. Ltd.\n ");
 		System.out.println("Visit our Website :https://LockedMe.com \n");
-	
+
 		System.out.println("Application Name: LockedMe.com\n");
 
 		System.out.println("Developer Name : Varun kumar\n");
-	
+
 		System.out.println("Developer Details:\nEmail: varunmanila@gmail.com\n");
-		 System.out.println("**************************************");
+		System.out.println("**************************************");
 	}
 
 	private static void readFIles() {
@@ -284,38 +279,40 @@ public class mainOperation {
 		File file = new File(rootDir);
 		// File file = new File("H:\\file operations");
 		File[] files = file.listFiles();
-		TreeSet<String> ts = new TreeSet<String>();
-		
-		for (File eachfile : files) {
-			if (eachfile.isDirectory()) {
-				File[] folderfile = eachfile.listFiles();
-				for (File f1 : folderfile) {
-					
-					ts.add(f1.getName());
+		//TreeSet<String> ts = new TreeSet<String>();
+		 ArrayList<String> listfile = new ArrayList<String>();
+		 
+		 for(File eachfile : files ) {
+				if(eachfile.isDirectory()) {
+					File [] folderfile = eachfile.listFiles();
+					for(File f1 : folderfile) {
+						System.out.println(f1.getName());
+						listfile.add(f1.getName());
+					}
+				}else {
+				System.out.println(eachfile.getName());
+				//listfile.add(eachfile.getName());
+				//System.out.println(ts);
+				//
 				}
-				//System.out.println(eachfile.getName());
 			}
-			//System.out.println(eachfile.getName());
-			 ts.add(eachfile.getName());
-			// System.out.println(ts);
-			
-		}
-		for (String nfiles : ts) {
+		Collections.sort(listfile);  
+		for (String nfiles :listfile) {
 			System.out.println(nfiles);
 		}
-		try{
+		try {
 			System.out.println("press 1 to main menu ");
 			int meb = sc.nextInt();
-			if(meb == 1) {
+			if (meb == 1) {
 				menumain();
-			}else {
+			} else {
 				System.out.println("Invalid Input ");
 			}
-		}catch(Exception e1){
+		} catch (Exception e1) {
 			System.out.println("Invalid Input ");
-		}finally {
-			sc.close();	
-	}
+		} finally {
+			sc.close();
+		}
 
 	}
 
@@ -334,15 +331,14 @@ public class mainOperation {
 		System.out.println("Enter yor choice");
 
 		try {
-		int option = sc.nextInt();
-		mainOperation op = new mainOperation();
-		op.operations(option);
-		}catch(Exception e) {
+			int option = sc.nextInt();
+			mainOperation op = new mainOperation();
+			op.operations(option);
+		} catch (Exception e) {
 			System.out.println("Invalid Input");
+		} finally {
+			sc.close();
 		}
-		finally {
-		sc.close();
 	}
-		}
 
 }
