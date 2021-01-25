@@ -336,13 +336,14 @@ if(newoption ==0) {
 		extracted();
 
 		menumain();
+		//
 	}
 
 	public static void menumain() {
 		System.out.println("\n***************Main Menu****************\n");
 		System.out.println(" Press 1 to Display Existing files ");
 		System.out.println(" Press 2 to File operations");
-		System.out.println(" Press 0 to Close The application");
+		System.out.println(" Press 3 to Close The application");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter yor choice");
 
