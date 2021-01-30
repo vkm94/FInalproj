@@ -255,7 +255,7 @@ if(newoption ==0) {
 			if (f) {
 				System.out.println("Deleted");
 			}else {
-				System.out.println("Erroe while Deleteting");
+				System.out.println("File Not Found");
 			}
 		} catch (NoSuchFileException ee) {
 			System.out.println("No Such File Exists");
@@ -354,7 +354,7 @@ if(newoption ==0) {
 		} catch (Exception e) {
 			System.out.println("Invalid Input");
 		} finally {
-			//sc.close();
+			sc.close();
 		}
 	}
 
